@@ -1,5 +1,7 @@
 # ospgsa
 
+> Correlation-aware global sensitivity analysis for Open Systems Pharmacology (PBPK) models.
+
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/Clinical-Pharmacy-Saarland-University/ospgsa/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Clinical-Pharmacy-Saarland-University/ospgsa/actions/workflows/R-CMD-check.yaml)
