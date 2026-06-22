@@ -1,0 +1,62 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# R-CMD-check for ospgsa.
+#
+# NOTE: `ospsuite` is a Suggested dependency that is NOT on CRAN and cannot be
+# installed in standard CI (it needs the PK-Sim/MoBi runtime). The package is
+# therefore checked WITHOUT it: only hard dependencies plus the check toolchain
+# are installed, the tests skip the PK-Sim parts (`skip_if_not_installed`) and
+# the examples are wrapped in `\dontrun{}`. `_R_CHECK_FORCE_SUGGESTS_: false`
+# lets the check pass with the suggested package unavailable.
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+name: R-CMD-check
+
+permissions: read-all
+
+jobs:
+  R-CMD-check:
+    runs-on: ${{ matrix.config.os }}
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: macos-latest,   r: 'release'}
+          - {os: windows-latest, r: 'release'}
+          - {os: ubuntu-latest,  r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest,  r: 'release'}
+          - {os: ubuntu-latest,  r: 'oldrel-1'}
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+      # Allow the un-CRAN Suggests (ospsuite) to be absent during the check.
+      _R_CHECK_FORCE_SUGGESTS_: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          # Install hard dependencies only; ospsuite (Suggests) is skipped.
+          dependencies: '"hard"'
+          extra-packages: |
+            any::rcmdcheck
+            any::testthat
+          needs: check
+
+      - uses: r-lib/actions/check-r-package@v2
+        with:
+          upload-snapshots: true
+          build_args: 'c("--no-manual")'

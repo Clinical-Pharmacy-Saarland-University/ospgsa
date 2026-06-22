@@ -1,0 +1,14 @@
+# Air R formatter configuration.
+# Docs: https://posit-dev.github.io/air/configuration/
+[format]
+# Wider than the punishing default of 80 so typical calls fit on one line.
+line-width = 100
+indent-width = 2
+indent-style = "space"
+line-ending = "auto"
+# The default (true) PRESERVES whatever line breaks you happen to type, which
+# scatters short calls one-argument-per-line and is the main source of Air's
+# over-vertical output. With false, Air collapses any call/vector that fits
+# within line-width (and ignores the "magic trailing comma"), giving compact,
+# consistent formatting.
+persistent-line-breaks = false

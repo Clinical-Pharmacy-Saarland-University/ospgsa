@@ -1,0 +1,39 @@
+Package: ospgsa
+Title: Global Sensitivity Analysis for Open Systems Pharmacology Models
+Version: 0.1.0
+Authors@R: c(
+    person("Dominik", "Selzer", email = "dominik.selzer@uni-saarland.de",
+           role = c("aut", "cre")),
+    person("Thorsten", "Lehr", email = "thorsten.lehr@uni-saarland.de", role = "ctb"),
+    person("Simeon", "Rüdesheim", email = "simeon.ruedesheim@uni-saarland.de", role = "ctb"),
+    person("Charlotte", "Dette", email = "charlotte.dette@uni-saarland.de", role = "ctb"),
+    person("Fatima", "Marok", email = "fatima.marok@uni-saarland.de", role = "ctb"))
+Description: Global sensitivity analysis (GSA) for physiologically based
+    pharmacokinetic (PBPK) models built in PK-Sim/MoBi. 
+    Provides correlation-aware, distribution-based Monte Carlo designs and a 
+    suite of variance-based and moment-independent sensitivity estimators. 
+    Sensitivity can be computed on scalar PK parameters (AUC, Cmax, ...) and on 
+    the full concentration-time profile. The GSA engine is model-agnostic.
+    ospsuite models have built-in integration.
+License: GPL-3
+Encoding: UTF-8
+Depends:
+    R (>= 4.1)
+Imports:
+    cli,
+    data.table,
+    digest,
+    ggplot2,
+    mvtnorm,
+    parallel,
+    stats,
+    utils
+Suggests:
+    ospsuite (>= 12.0),
+    testthat (>= 3.0.0),
+    pkgload
+Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
+URL: https://github.com/Clinical-Pharmacy-Saarland-University/ospgsa
+BugReports: https://github.com/Clinical-Pharmacy-Saarland-University/ospgsa/issues
+Config/roxygen2/version: 8.0.0

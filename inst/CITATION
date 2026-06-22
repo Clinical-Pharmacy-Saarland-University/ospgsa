@@ -1,0 +1,101 @@
+## Citation information for the ospgsa package.
+ver <- tryCatch(as.character(meta$Version), error = function(e) NULL)
+if (is.null(ver) || !length(ver) || is.na(ver)) ver <- "0.1.0"
+
+citHeader(
+  "To cite ospgsa in publications, please cite the package together with the",
+  "methodological papers it implements (the two-stage delta method):"
+)
+
+bibentry(
+  bibtype  = "Manual",
+  key      = "ospgsa-package",
+  title    = "{ospgsa}: Global Sensitivity Analysis for Open Systems Pharmacology Models",
+  author   = c(
+    person("Dominik", "Selzer"),
+    person("Thorsten", "Lehr"),
+    person("Simeon", "Rüdesheim"),
+    person("Charlotte", "Dette"),
+    person("Fatima", "Marok")
+  ),
+  year     = "2026",
+  note     = paste("R package version", ver),
+  url      = "https://github.com/Clinical-Pharmacy-Saarland-University/ospgsa"
+)
+
+bibentry(
+  bibtype  = "Article",
+  key      = "decarlo2023",
+  title    = paste(
+    "A two-stages global sensitivity analysis by using the delta sensitivity",
+    "index in presence of correlated inputs: application on a tumor growth",
+    "inhibition model based on the dynamic energy budget theory"
+  ),
+  author   = c(
+    person("A.", "De Carlo"),
+    person("E. M.", "Tosca"),
+    person("N.", "Melillo"),
+    person("P.", "Magni")
+  ),
+  journal  = "Journal of Pharmacokinetics and Pharmacodynamics",
+  year     = "2023",
+  volume   = "50",
+  number   = "5",
+  pages    = "395--409",
+  doi      = "10.1007/s10928-023-09872-w"
+)
+
+bibentry(
+  bibtype  = "Article",
+  key      = "cuquerella2026",
+  title    = paste(
+    "Leveraging Two-Stage delta Global Sensibility Analysis Method to Inform",
+    "Parameter Estimation in PBPK Models"
+  ),
+  author   = c(
+    person("M.", "Cuquerella-Gilabert"),
+    person("A.", "De Carlo"),
+    person("S.", "Sánchez-Herrero"),
+    person("J.", "Reig-López"),
+    person("M.", "Merino-Sanjuán"),
+    person("E. M.", "Tosca"),
+    person("V.", "Mangas-Sanjuán"),
+    person("P.", "Magni")
+  ),
+  journal  = "Pharmaceutical Statistics",
+  year     = "2026",
+  volume   = "25",
+  number   = "2",
+  pages    = "e70082",
+  doi      = "10.1002/pst.70082"
+)
+
+bibentry(
+  bibtype  = "Article",
+  key      = "borgonovo2007",
+  title    = "A new uncertainty importance measure",
+  author   = person("E.", "Borgonovo"),
+  journal  = "Reliability Engineering & System Safety",
+  year     = "2007",
+  volume   = "92",
+  number   = "6",
+  pages    = "771--784",
+  doi      = "10.1016/j.ress.2006.04.015"
+)
+
+bibentry(
+  bibtype  = "Article",
+  key      = "plischke2013",
+  title    = "Global sensitivity measures from given data",
+  author   = c(
+    person("E.", "Plischke"),
+    person("E.", "Borgonovo"),
+    person("C. L.", "Smith")
+  ),
+  journal  = "European Journal of Operational Research",
+  year     = "2013",
+  volume   = "226",
+  number   = "3",
+  pages    = "536--550",
+  doi      = "10.1016/j.ejor.2012.11.047"
+)

@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^_.*\.R$
+^.*\.Rcheck$
+^\.github$
+^\.claude$
+^air\.toml$
+^dev$
