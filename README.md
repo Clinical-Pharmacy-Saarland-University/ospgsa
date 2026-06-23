@@ -30,13 +30,9 @@ OSP already offers sensitivity analysis, but at a different scope. `ospsuite::Se
 
 ## Correlation-aware two-stage delta
 
-A local one-at-a-time (OAT) sensitivity (normalized finite difference) characterizes the model only in a small neighborhood of one nominal parameter vector. PBPK responses can be nonlinear (for example saturable clearance or absorption thresholds), parameters interact and OAT perturbs by a fixed ±% rather than by each parameter's distribution. Hence it cannot apportion _output_ uncertainty to inputs. Global methods vary all parameters simultaneously across their full distributions and decompose the resulting variability, capturing nonlinearity, interactions and the geometry of the explored space.
+Local one-at-a-time sensitivity describes the model only near one nominal point and cannot capture nonlinearity, interactions or apportion _output_ uncertainty to inputs. Global methods vary all parameters at once across their full distributions and decompose the resulting variability. Because physiology is correlated by construction (organ volumes and flows scale with body weight, CL and V are linked) and variance-based methods (Sobol, FAST, Morris) assume independent inputs, `ospgsa` defaults to Borgonovo's delta, which is computable from a correlated sample with no modification.
 
-Physiology is correlated by construction (organ volumes and blood flows scale with body weight, CL and V are linked). Variance-based methods (Sobol, FAST/eFAST) and Morris all assume input independence. On a correlated sample they misattribute importance (the first-order indices need no longer sum to less than 1, and a non-influential parameter can look important purely through a correlated partner). `ospgsa` therefore uses a correlation-robust method (delta) as its default.
-
-Borgonovo's delta (Borgonovo 2007) is the average shift between the unconditional output density and the density conditional on an input, that is how much the _whole_ output distribution moves once a parameter's value is known. It is bounded in [0, 1], responds to changes in _any_ feature of the distribution (not only variance) and uses only the bivariate law of (Xᵢ, Y). So it is computable from a correlated sample with no modification. It is estimated from a single input-output sample with the given-data estimator of Plischke, Borgonovo and Smith (2013) (rank-class conditioning, KDE, bootstrap bias-correction and confidence intervals), so no extra model runs are needed beyond the design itself.
-
-**The two-stage decomposition.** On a correlated sample delta blends a parameter's own _structural_ effect with the importance it _inherits_ through correlation. The two-stage procedure (De Carlo et al. 2023, Cuquerella-Gilabert et al. 2026) computes delta on two designs and compares them.
+On a correlated sample delta blends a parameter's own _structural_ effect with the importance it _inherits_ through correlation. The two-stage procedure (De Carlo et al. 2023, Cuquerella-Gilabert et al. 2026) computes delta on two designs and compares them.
 
 - **Stage 1, independent design** (correlations switched off). delta_1 isolates the direct, model-driven effect.
 - **Stage 2, full correlated design**. delta_2 reflects importance under the true joint distribution, including correlation-transmitted effects.
@@ -50,7 +46,7 @@ Borgonovo's delta (Borgonovo 2007) is the average shift between the unconditiona
 | **both**            | delta_1 and delta_2 above the floor    | direct effect **plus** correlation transmission      |
 | **non-influential** | neither above the floor                | fixable                                              |
 
-The [GSA primer](https://github.com/Clinical-Pharmacy-Saarland-University/ospgsa/blob/main/dev/GSA_PRIMER.md) gives the full treatment of the methods and their pitfalls.
+The [GSA methods primer](https://github.com/Clinical-Pharmacy-Saarland-University/ospgsa/blob/main/dev/gsa-methods.md) gives a short treatment of the methods.
 
 ## Installation
 

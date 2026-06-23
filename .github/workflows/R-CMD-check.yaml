@@ -49,12 +49,10 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          # Install hard dependencies only; ospsuite (Suggests) is skipped.
-          # The un-CRAN ospsuite is provided via the OSP r-universe so that, if
-          # available as a binary for the runner, pak can use it; otherwise the
-          # hard-only dependency set keeps the check green without it.
+          # Install hard dependencies only. ospsuite (Suggests) is NOT on CRAN
+          # and cannot be installed in CI, so it is skipped entirely; the tests
+          # skip the PK-Sim parts via skip_if_not_installed("ospsuite").
           dependencies: 'c("Depends", "Imports", "LinkingTo")'
-          extra-repositories: https://open-systems-pharmacology.r-universe.dev
           extra-packages: |
             any::rcmdcheck
             any::testthat
