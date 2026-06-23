@@ -29,7 +29,6 @@ Imports:
     stats,
     utils
 Suggests:
-    ospsuite (>= 12.0),
     testthat (>= 3.0.0),
     pkgload
 Roxygen: list(markdown = TRUE)
