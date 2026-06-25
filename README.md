@@ -30,7 +30,7 @@ OSP already offers sensitivity analysis, but at a different scope. `ospsuite::Se
 
 ## Correlation-aware two-stage delta
 
-Local one-at-a-time sensitivity describes the model only near one nominal point and cannot capture nonlinearity, interactions or apportion _output_ uncertainty to inputs. Global methods vary all parameters at once across their full distributions and decompose the resulting variability. Because physiology is correlated by construction (organ volumes and flows scale with body weight, CL and V are linked) and variance-based methods (Sobol, FAST, Morris) assume independent inputs, `ospgsa` defaults to Borgonovo's delta, which is computable from a correlated sample with no modification.
+Local one-at-a-time sensitivity describes the model only near one nominal point and cannot capture nonlinearity, interactions or apportion _output_ uncertainty to inputs. Global methods vary all parameters at once across their full distributions and decompose the resulting variability. Because physiological parameters are correlated by construction, variance-based methods such as Sobol and FAST, as well as screening methods such as Morris, violate the common assumption of independent inputs. `ospgsa` defaults to Borgonovo's delta, which is computable from a correlated sample with no modification.
 
 On a correlated sample delta blends a parameter's own _structural_ effect with the importance it _inherits_ through correlation. The two-stage procedure (De Carlo et al. 2023, Cuquerella-Gilabert et al. 2026) computes delta on two designs and compares them.
 
