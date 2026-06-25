@@ -242,8 +242,8 @@ Every estimator returns an `ospgsa_result`, a tidy `data.table` of indices (`est
 
 | Method          | What it measures                                           | Correlation-safe  | Typical sample size         |
 | --------------- | ---------------------------------------------------------- | ----------------- | --------------------------- |
-| delta two-stage | whole-distribution shift, structural vs correlation-driven | **yes** (primary) | hundreds to 10⁴             |
-| Sobol `S1`/`ST` | variance shares and interactions                           | no                | `n·(k+2)`, `n = $2^{10}$ to $2^{14}$` |
+| delta two-stage | whole-distribution shift, structural vs correlation-driven | **yes** (primary) | hundreds to $10^{4}$              |
+| Sobol `S1`/`ST` | variance shares and interactions                           | no                | `n·(k+2)`, `n = ` $2^{10}$ to $2^{14}$ |
 | Morris `mu*`    | screening importance and nonlinearity                      | no                | `r·(k+1)`                   |
 | SRC / PRCC      | (rank) regression strength                                 | partly            | any LHS, `n` above $10^{3}$      |
 
