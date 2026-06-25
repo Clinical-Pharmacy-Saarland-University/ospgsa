@@ -216,7 +216,7 @@ ev <- ospsuite_evaluator(sim, params, outputs = MTX_PATH, summary_fn = my_metric
 | `gsa_delta_two_stage()`  | delta on an independent versus a correlated design, splitting structural from correlation-driven importance                                                  |
 | `delta_classification()` | Label each parameter _causal_, _indirect-only_ or _both_                                                                                                     |
 | `gsa_sobol()`            | Sobol first-order (`S1`) and total-order (`ST`) variance indices                                                                                             |
-| `gsa_morris()`           | Morris elementary effects (`mu`, `mu*`, `sigma`) for screening                                                                                               |
+| `gsa_morris()`           | Morris elementary effects ($\mu$, $\mu^\*$, $\sigma$) for screening                                                                                               |
 | `gsa_regression()`       | Standardized or partial (rank) regression (`SRC`, `SRRC`, `PCC`, `PRCC`) with model R²                                                                       |
 | `gsa_convergence()`      | Re-estimate at increasing sample sizes to check convergence                                                                                                  |
 | `ospgsa_cluster()`       | Build a PSOCK cluster with ospgsa loaded on the workers to parallelize the delta bootstrap (`cl =` in `gsa_delta()`, `gsa_delta_two_stage()` and `gsa()`)    |
@@ -244,7 +244,7 @@ Every estimator returns an `ospgsa_result`, a tidy `data.table` of indices (`est
 | --------------- | ---------------------------------------------------------- | ----------------- | --------------------------- |
 | delta two-stage | whole-distribution shift, structural vs correlation-driven | **yes** (primary) | hundreds to $10^{4}$              |
 | Sobol `S1`/`ST` | variance shares and interactions                           | no                | `n·(k+2)`, `n = ` $2^{10}$ to $2^{14}$ |
-| Morris `mu*`    | screening importance and nonlinearity                      | no                | `r·(k+1)`                   |
+| Morris $\mu^\*$    | screening importance and nonlinearity                      | no                | `r·(k+1)`                   |
 | SRC / PRCC      | (rank) regression strength                                 | partly            | any LHS, `n` above $10^{3}$      |
 
 ## References
