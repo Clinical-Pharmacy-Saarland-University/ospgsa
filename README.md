@@ -34,16 +34,16 @@ Local one-at-a-time sensitivity describes the model only near one nominal point 
 
 On a correlated sample delta blends a parameter's own _structural_ effect with the importance it _inherits_ through correlation. The two-stage procedure (De Carlo et al. 2023, Cuquerella-Gilabert et al. 2026) computes delta on two designs and compares them.
 
-- **Stage 1, independent design** (correlations switched off). delta_1 isolates the direct, model-driven effect.
-- **Stage 2, full correlated design**. delta_2 reflects importance under the true joint distribution, including correlation-transmitted effects.
+- **Stage 1, independent design** (correlations switched off). $\delta_1$ isolates the direct, model-driven effect.
+- **Stage 2, full correlated design**. $\delta_2$ reflects importance under the true joint distribution, including correlation-transmitted effects.
 
 `delta_classification()` reads the two stages against a `dummy` parameter that fixes the empirical noise floor.
 
 | Class               | Condition                              | Reading                                              |
 | ------------------- | -------------------------------------- | ---------------------------------------------------- |
-| **causal**          | delta_1 above the floor                | genuine direct, model-driven effect                  |
-| **indirect-only**   | delta_1 at the floor, delta_2 above it | influential _only_ through correlation with a driver |
-| **both**            | delta_1 and delta_2 above the floor    | direct effect **plus** correlation transmission      |
+| **causal**          | $\delta_1$ above the floor                | genuine direct, model-driven effect                  |
+| **indirect-only**   | $\delta_1$ at the floor, $\delta_2$ above it | influential _only_ through correlation with a driver |
+| **both**            | $\delta_1$ and $\delta_2$ above the floor    | direct effect **plus** correlation transmission      |
 | **non-influential** | neither above the floor                | fixable                                              |
 
 The [GSA methods primer](https://github.com/Clinical-Pharmacy-Saarland-University/ospgsa/blob/main/dev/gsa-methods.md) gives a short treatment of the methods.
@@ -229,7 +229,7 @@ ev <- ospsuite_evaluator(sim, params, outputs = MTX_PATH, summary_fn = my_metric
 | `plot()` / `gsa_plot()`                 | Plot method for a result that dispatches to the `plot_*` function for the chosen `type` |
 | `plot_indices()`                        | Tornado bar plot of any index with confidence intervals                                 |
 | `plot_sobol()`                          | Grouped `S1` versus `ST` bars (the gap indicates interactions)                          |
-| `plot_delta_two_stage()`                | delta_1 (structural) versus delta_2 (full) bars                                         |
+| `plot_delta_two_stage()`                | $\delta_1$ (structural) versus $\delta_2$ (full) bars                                         |
 | `plot_morris()`                         | (mu\*, sigma) screening plane                                                           |
 | `plot_time_heatmap()`                   | Index over time (parameters by time)                                                    |
 | `plot_convergence()`                    | Index versus sample size                                                                |
